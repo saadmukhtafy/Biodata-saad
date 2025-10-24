@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Keren - Mudah Diubah!</title>
+    
+    <!-- Font Awesome CDN: Ikon gratis, mudah tambah ikon lain -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS dengan Variables: Ubah di :root untuk modifikasi global (tema, warna, animasi) -->
+    <style>
+        /* Root Variables: Ubah di sini untuk ganti tema seluruh halaman – super mudah! */
+        :root {
+            --warna-utama: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient header: Ubah ke linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%) untuk pink */
+            --warna-kaca: rgba(255, 255, 255, 0.25); /* Efek glass: Ubah ke rgba(0, 0, 0, 0.1) untuk dark glass */
+            --warna-latar: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Background halaman: Ubah ke #000 untuk dark mode */
+            --warna-teks: #2c3e50; /* Teks utama: Ubah ke #ffffff untuk kontras di dark */
+            --warna-ikon: #6c5ce7; /* Ikon: Ubah ke #e17055 (oranye) */
+            --font-utama: 'Poppins', sans-serif; /* Font modern: Ubah ke 'Arial' jika tak mau Google Font */
+            --padding-global: 25px; /* Ruang: Ubah ke 15px untuk lebih compact */
+            --border-radius: 15px; /* Sudut cards: Ubah ke 5px untuk tajam */
+            --animasi-durasi: 0.5s; /* Kecepatan animasi: Ubah ke 0.3s untuk lebih cepat */
+        }
+        
+        /* Import Google Font (opsional, untuk font keren – hapus jika tak mau) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        /* Reset dan Body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-utama);
+            background: var(--warna-latar);
+            color: var(--warna-teks);
+            line-height: 1.7;
+            padding: var(--padding-global);
+            overflow-x: hidden; /* Hindari scroll horizontal */
+        }
+        
+        /* Layout Utama: CSS Grid untuk cards rapi (2 kolom desktop, 1 mobile) */
+        .portofolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Auto-adjust: Ubah ke '1fr' untuk 1 kolom selalu */
+            gap: 30px; /* Jarak cards: Ubah ke 40px */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header: Full-width, gradient, animasi fade-in */
+        .header {
+            grid-column: 1 / -1; /* Full width */
+            background: var(--warna-utama);
+            color: white;
+            padding: 40px var(--padding-global);
+            border-radius: var(--border-radius);
+            text-align: center;
+            backdrop-filter: blur(10px); /* Efek blur glass: Ubah ke 0 jika tak mau */
+            animation: fadeInDown 1s ease-out; /* Animasi masuk dari atas */
+        }
+        
+        .header h1 {
+            font-size: 3em; /* Ukuran judul: Ubah ke 2.5em */
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        /* Cards Umum: Glassmorphism effect, hover animasi */
+        .card {
+            background: var(--warna-kaca);
+            backdrop-filter: blur(15px); /* Glass blur: Ubah ke 5px untuk kurang blur */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: var(--padding-global);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Bayangan: Ubah ke 0 untuk flat */
+            transition: transform var(--animasi-durasi), box-shadow var(--animasi-durasi); /* Hover smooth */
+            animation: fadeInUp var(--animasi-durasi) ease-out; /* Fade-in dari bawah */
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02); /* Hover: Naik & sedikit zoom – Ubah ke 'scale(1.05)' untuk lebih besar */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card h2 {
+            color: var(--warna-ikon);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Jarak ikon & teks */
+        }
+        
+        .card h2 i {
+            color: var(--warna-ikon);
+            font-size: 1.5em; /* Ukuran ikon: Ubah ke 1.2em */
+        }
+        
+        /* Skills: Badge dengan ikon */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .skill-item {
+            background: var(--warna-utama);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px; /* Bulat: Ubah ke 5px untuk kotak */
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--animasi-durasi);
+        }
+        
+        .skill-item:hover {
+            transform: scale(1.1); /* Hover badge: Ubah ke 'scale(1.05)' */
+        }
+        
+        .skill-item i {
+            font-size: 0.8em;
+        }
+        
+        /* Hobi: List dengan ikon */
+        .hobi ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .hobi li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1); /* Latar item: Ubah opacity */
+            border-radius: 8px;
+        }
+        
+        .hobi li i {
+            color: var(--warna-ikon);
+            font-size: 1.2em;
+        }
+        
+        /* Instagram: Tombol besar dengan ikon */
+        .instagram {
+            text-align: center;
+        }
+        
+        .instagram a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--warna-utama);
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1em;
+            margin-top: 10px;
+            transition: var(--animasi-durasi);
+        }
+        
+        .instagram a:hover {
+            background: #5a4fcf; /* Hover: Ubah sesuai gradient */
+            transform: scale(1.05);
+        }
+        
+        .instagram a i {
+            font-size: 1.3em;
+        }
+        
+        /* Footer: Sederhana di bawah */
+        .footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        
+        /* Animasi CSS: Fade-in untuk efek keren */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsif: Mobile-first */
+        @media (max-width: 768px) {
+            .portofolio {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .header h1 {
+                font-size: 2.2em;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Konten HTML: Ubah teks/ikon di sini – mudah! -->
+    <div class="portofolio">
+        <!-- Header: Full-width -->
+        <section class="header">
+            <h1>SAAD MUKHTAFY BIFAIDILLAH</h1> <!-- Ubah: Ganti nama asli -->
+            <p> Blog Pribadi (Portofolio) </p>
+        </section>
+        
+        <!-- Card 1: Bio -->
+        <section class="card bio">
+            <h2><i class="fas fa-user"></i>Tentang Saya</h2> <!-- Ikon user: Ubah ke 'fas fa-briefcase' untuk koper -->
+            <p>Halo! Ini bio singkat saya. Saya suka belajar web design dan coding.</p>
+            <p>Skill: Pengembang pemula yang antusias!</p>
+            
+            <div class="skills">
+                <span class="skill-item"><i class="fab fa-html5"></i>HTML</span> <!-- Ubah ikon: Cari di fontawesome.com -->
+                <span class="skill-item"><i class="fab fa-css3-alt"></i>CSS</span>
+                <span class="skill-item"><i class="fab fa-python"></i>Python</span>
+                
+            </div>
+        </section>
+        
+        <!-- Card 2: Hobi -->
+        <section class="card hobi">
+            <h2><i class="fas fa-heart"></i>Hobi Saya</h2> <!-- Ikon hati: Ubah ke 'fas fa-gamepad' untuk game -->
+            <p>Daftar hobi favorit yang membuat hidup lebih seru.</p>
+            <ul>
+                <li><i class="fas fa-book"></i>Membaca buku </li> <!-- Ubah ikon/teks -->
+                <li><i class="fas fa-running"></i>Olahraga lari</li>
+                
+                <li><i class="fas fa-utensils"></i>Memasak</li>
+            </ul>
+        </section>
+        
+        <!-- Card 3: Instagram -->
+        <section class="card instagram">
+            <h2><i class="fab fa-instagram"></i>Ikuti di Instagram</h2> <!-- Ikon IG: Sudah pas -->
+            <p>Nama: @bifaiii_</p> <!-- Ubah handle -->
+            <a href="https://www.instagram.com/bifaiii_?igsh=M2c0MDc0ODcwZmUz" target="_blank">
+                <i class="fab fa-instagram"></i>Kunjungi Profil Saya
+            </a> <!-- Ubah href & teks -->
+        </section>
+        
+        <!-- Footer: Opsional, tambah info tambahan -->
+        <footer class="footer">
+            <p>&copy; 2023 Portofolio </p> <!-- Ubah tahun/teks -->
+        </footer>
+    </div>
+</body>
+</html>
